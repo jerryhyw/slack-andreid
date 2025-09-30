@@ -1,7 +1,10 @@
 {
   "display_information": {
-    "name": "Getting Started Bolt App"
-  },
+    "name": "Andreid",
+        "description": "Andrei Bot",
+        "background_color": "#0f8585",
+        "long_description": "Configuration based bot to forward tagged messages between channels.\r\nConfiguration includes: Source Channels, Destination Channels, Matched Tags, and Keyword Filter (optional)."
+    },
   "features": {
     "app_home": {
       "home_tab_enabled": false,
@@ -9,13 +12,18 @@
       "messages_tab_read_only_enabled": false
     },
     "bot_user": {
-      "display_name": "BoltApp",
+      "display_name": "Andreid",
       "always_online": true
     }
   },
   "oauth_config": {
     "scopes": {
-      "bot": ["channels:history", "chat:write", "im:history"]
+      "bot": ["channels:history",
+              "chat:write",
+              "im:history",
+              "channels:read",
+              "groups:history",
+              "app_mentions:read"]
     }
   },
   "settings": {
