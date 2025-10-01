@@ -4,11 +4,15 @@
   "description": "Andreid on Slack",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --require dotenv/config app.js",
+    "start:20": "node --env-file .env app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
   "dependencies": {
     "@slack/bolt": "^4.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
   }
 }

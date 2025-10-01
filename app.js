@@ -1,9 +1,7 @@
 const { App } = require('@slack/bolt');
 
 /**
- * This sample slack application uses SocketMode.
- * For the companion getting started setup guide, see:
- * https://tools.slack.dev/bolt-js/getting-started/
+ * Andreid
  */
 
 // Initializes your app with your bot token and app token
@@ -48,5 +46,5 @@ app.action('button_click', async ({ body, ack, say }) => {
   // Start your app
   await app.start(process.env.PORT || 3000);
 
-  app.logger.info('⚡️ Bolt app is running!');
+  app.logger.info('⚡️ Bolt app Andreid is running!');
 })();

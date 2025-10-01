@@ -36,9 +36,12 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# dependencies
+# Dependencies
 node_modules
 
 # System Files
 .DS_Store
 Thumbs.db
+
+# Environment files
+.env
