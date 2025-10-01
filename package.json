@@ -11,7 +11,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@slack/bolt": "^4.2.0"
+    "@slack/bolt": "^4.2.0",
+    "@slack/web-api": "^7.10.0"
   },
   "devDependencies": {
     "dotenv": "^16.4.5"

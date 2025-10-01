@@ -25,9 +25,9 @@ export const writeLastRunTime = (date) => {
   try {
     const currTime = date.getTime() || new Date().getTime();
     fs.writeFile(LAST_RUN_FILENAME, '' + currTime, (err) => {
-      if (err) console.log(err);
+      if (err) console.error(err);
     });
-  } catch (e) {
-    console.log("Error encountered while writing time to file\n" + e.message);
+  } catch (error) {
+    console.error("Error encountered while writing time to file\n" + error.message);
   }
 };

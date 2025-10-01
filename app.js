@@ -1,5 +1,6 @@
 import slackBolt from '@slack/bolt';
 import { readLastRunTime, writeLastRunTime } from './lastRun.js';
+import { getChannels } from './messageHandler.js';
 
 /**
  * Andreid
@@ -11,6 +12,21 @@ const app = new slackBolt.App({
   socketMode: true,
   appToken: process.env.SLACK_APP_TOKEN
 });
+
+const sourceChannelList = [
+  'starsweb-developer-support',
+  'starsweb-prodissues'
+];
+
+const destinationChannelList = [
+  'int-client-tech-web-platform-frontier'
+];
+
+const tagList = [
+  'Jerry Hu',
+  'Tim Girard',
+  'ryanlato'
+];
 
 // Listens to incoming messages that contain "hello"
 app.message(new RegExp('(h|H)((e|E)(l|L){2}(o|O)|(i|I)|(e|E)(y|Y))'), async ({ message, say }) => {
@@ -46,6 +62,12 @@ app.action('button_start_click', async ({ body, ack, say }) => {
   const nowTime = new Date();
   writeLastRunTime(nowTime);
   await say(`Starting new run at ${nowTime.toLocaleString()}`);
+
+  const srcChannels = await getChannels(app, sourceChannelList);
+  console.log(`There are ${srcChannels.length} source channel(s) found`);
+
+  const destChannels = await getChannels(app, destinationChannelList);
+  console.log(`There are ${destChannels.length} destination channel(s) found`);
 });
 
 (async () => {
