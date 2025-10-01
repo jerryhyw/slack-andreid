@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Andreid on Slack",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "node --require dotenv/config app.js",
     "start:20": "node --env-file .env app.js",
