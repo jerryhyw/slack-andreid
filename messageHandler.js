@@ -18,8 +18,6 @@ export const getChannels = async (channelNames) => {
     });
 
     matchedChannels = result.channels.filter((channel) => channelNames.includes(channel.name));
-    matchedChannels.forEach((channel) => console.log(channel.id));
-
     return matchedChannels;
   }
   catch (error) {
