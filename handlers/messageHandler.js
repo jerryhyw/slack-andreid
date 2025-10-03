@@ -137,7 +137,7 @@ export const publishMessage = async (sourceChannel, destinatonChannel, permalink
   }
 }
 
-export const deleteMessage = async(channelId, ts) => {
+export const deleteMessage = async (channelId, ts) => {
    try {
     // Call the chat.delete method using WebClient
     const result = await client.chat.delete({
@@ -151,5 +151,19 @@ export const deleteMessage = async(channelId, ts) => {
   }
   catch (error) {
     console.error(error);
+  }
+}
+
+export const deleteEphemeralMessage = async (responseUrl) => {
+  if (!responseUrl) return;
+
+  const response = await fetch(responseUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ "delete_original": "true" })
+  });
+
+  if (!response.ok) {
+    console.error(`Error encountered while deleting ephemeral message. Status: ${response.status}`);
   }
 }

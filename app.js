@@ -1,7 +1,7 @@
 import slackBolt from '@slack/bolt';
 
 import { run } from './handlers/commandHandler.js';
-import { deleteMessage } from './handlers/messageHandler.js';
+import { deleteEphemeralMessage } from './handlers/messageHandler.js';
 
 import { readLastRunTime, writeLastRunTime } from './utils/timestamp.js';
 import { readConfig, writeConfig } from './utils/config.js';
@@ -139,7 +139,8 @@ app.action('button_save_click', async ({ body, ack, say }) => {
 app.action('button_cancel_click', async ({ body, ack, say }) => {
   // acknowledge the action
   await ack();
-  deleteMessage(body.container.channel_id, body.container.message_ts);
+  
+  deleteEphemeralMessage(body.response_url);
 });
 
 // listens to incoming messages that contain "hello/hi/hey Andreid"
