@@ -67,7 +67,11 @@ app.command('/andreid', async ({ command, ack, respond }) => {
             "element": {
               "type": "plain_text_input",
               "action_id": "plain_input",
-              "initial_value": `${currentConfig.source.join(',')}`
+              "initial_value": `${currentConfig.source.join(',')}`,
+              "placeholder": {
+                "type": "plain_text",
+                "text": "Comma-separated value"
+              }
             }
           },
           {
@@ -80,7 +84,11 @@ app.command('/andreid', async ({ command, ack, respond }) => {
             "element": {
               "type": "plain_text_input",
               "action_id": "plain_input",
-              "initial_value": `${currentConfig.destination.join(',')}`
+              "initial_value": `${currentConfig.destination.join(',')}`,
+              "placeholder": {
+                "type": "plain_text",
+                "text": "Comma-separated value"
+              }
             }
           },
           {
@@ -93,7 +101,11 @@ app.command('/andreid', async ({ command, ack, respond }) => {
             "element": {
               "type": "plain_text_input",
               "action_id": "plain_input",
-              "initial_value": `${currentConfig.tags.join(',')}`
+              "initial_value": `${currentConfig.tags.join(',')}`,
+              "placeholder": {
+                "type": "plain_text",
+                "text": "Comma-separated value"
+              }
             }
           },
           {
@@ -101,12 +113,16 @@ app.command('/andreid', async ({ command, ack, respond }) => {
             "block_id": "input_filter",
             "label": {
               "type": "plain_text",
-              "text": "Tags"
+              "text": "Text filter"
             },
             "element": {
               "type": "plain_text_input",
               "action_id": "plain_input",
-              "initial_value": `${currentConfig.filter.join(',')}`
+              "initial_value": `${currentConfig.filter.join(',')}`,
+              "placeholder": {
+                "type": "plain_text",
+                "text": "Comma-separated value"
+              }
             }
           },
           {
