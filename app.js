@@ -38,7 +38,7 @@ app.command('/andreid', async ({ command, ack, respond }) => {
       await respond(`Starting new run at ${nowTime.toLocaleString()}`);
 
       // read config
-      const config = {};
+      const config = readConfig();
 
       // execute main messaging function
       run(lastRunTime, config);
@@ -97,6 +97,19 @@ app.command('/andreid', async ({ command, ack, respond }) => {
             }
           },
           {
+            "type": "input",
+            "block_id": "input_filter",
+            "label": {
+              "type": "plain_text",
+              "text": "Tags"
+            },
+            "element": {
+              "type": "plain_text_input",
+              "action_id": "plain_input",
+              "initial_value": `${currentConfig.filter.join(',')}`
+            }
+          },
+          {
             "type": "actions",
             "block_id": "actions_save_cancel",
             "elements": [
@@ -133,6 +146,19 @@ app.action('button_save_click', async ({ body, ack, say }) => {
   // acknowledge the action
   await ack();
 
+  // read inputs
+  const updatedConfig = {};
+  updatedConfig.source = body.state.values.input_source.plain_input.value;
+  updatedConfig.destination = body.state.values.input_destination.plain_input.value;
+  updatedConfig.tags = body.state.values.input_tags.plain_input.value;
+  updatedConfig.filter = body.state.values.input_filter.plain_input.value;
+
+  // store new config
+  writeConfig(updatedConfig);
+
+  // delete interactive message
+  deleteEphemeralMessage(body.response_url);
+
   await say(`<@${body.user.id}> updated the configuration.`);
 });
 
@@ -140,6 +166,7 @@ app.action('button_cancel_click', async ({ body, ack, say }) => {
   // acknowledge the action
   await ack();
   
+  // delete interactive message
   deleteEphemeralMessage(body.response_url);
 });
 

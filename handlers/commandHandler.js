@@ -29,7 +29,7 @@ export const run = async (lastRunTime, config) => {
         }
       }
 
-      // filter messages
+      // filter messages by tags
       if (config.tags && config.tags.length) {
         const mentionMatchList = config.tags.map((userId) => {
           return `<@${userId}>`;
@@ -41,6 +41,10 @@ export const run = async (lastRunTime, config) => {
           return matchList.length > 0;
         });
       }
+
+      // filter messages by configured filter
+      // TODO
+      //
 
       // sort messages by ascending timestamps
       // TODO: search.messages has built-in sort but lacks other features

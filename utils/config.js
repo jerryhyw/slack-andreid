@@ -17,6 +17,8 @@ const DEFAULT_TAGS = [
   'U05GX3Z2QD8' // ryanlato
 ];
 
+const DEFAULT_FILTER = [];
+
 export const readConfig = () => {
   try {
     return configStringToArray(JSON.parse(fs.readFileSync(CONFIG_FILENAME)));
@@ -29,7 +31,7 @@ export const readConfig = () => {
 export const writeConfig = (configObj) => {
   try {
     const configString = JSON.stringify(configObj);
-    fs.writeFile(CONFIG_FILENAME, '' + currTime, (err) => {
+    fs.writeFile(CONFIG_FILENAME, configString, (err) => {
       if (err) console.error(err);
     });
   } catch (error) {
@@ -42,6 +44,7 @@ const getDefaultConfigJsonString = () => {
   defaultConfig.source = DEFAULT_SOURCE.join(",");
   defaultConfig.destination = DEFAULT_DESTINATION.join(",");
   defaultConfig.tags = DEFAULT_TAGS.join(",");
+  defaultConfig.filter = DEFAULT_FILTER.join(",");
   return JSON.stringify(defaultConfig);
 }
 
@@ -50,6 +53,7 @@ const configStringToArray = (config) => {
   result.source = stringToArray(config.source);
   result.destination = stringToArray(config.destination);
   result.tags = stringToArray(config.tags);
+  result.filter = stringToArray(config.filter);
   return result;
 }
 
