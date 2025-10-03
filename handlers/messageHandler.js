@@ -136,3 +136,20 @@ export const publishMessage = async (sourceChannel, destinatonChannel, permalink
     console.error(error);
   }
 }
+
+export const deleteMessage = async(channelId, ts) => {
+   try {
+    // Call the chat.delete method using WebClient
+    const result = await client.chat.delete({
+      channel: channelId,
+      ts
+    });
+
+    if (!result.ok) {
+      console.error(result.error);
+    }
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
